@@ -3,8 +3,8 @@ import cv2
 
 
 video_capture = cv2.VideoCapture(0)
-video_capture.set(3, 160)
-video_capture.set(4, 120)
+video_capture.set(3, 640)
+video_capture.set(4, 480)
 
 while(True):
 
@@ -12,7 +12,7 @@ while(True):
     ret, frame = video_capture.read()
 
     # Crop the image
-    crop_img = frame[60:120, 0:160]
+    crop_img = frame[60:480, 0:640]
 
     # Convert to grayscale
     gray = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)
@@ -39,10 +39,10 @@ while(True):
 
         cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
 
-        if cx >= 120:
+        if cx >= 480:
             print( "Turn Left!")
 
-        if cx < 120 and cx > 50:
+        if cx < 480 and cx > 50:
             print( "On Track!")
 
         if cx <= 50:
