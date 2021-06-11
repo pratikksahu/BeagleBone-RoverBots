@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 
-video_capture = cv2.VideoCapture(-1)
+video_capture = cv2.VideoCapture(0)
 video_capture.set(3, 160)
 video_capture.set(4, 120)
 
@@ -40,16 +40,16 @@ while(True):
         cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
 
         if cx >= 120:
-            print "Turn Left!"
+            print( "Turn Left!")
 
         if cx < 120 and cx > 50:
-            print "On Track!"
+            print( "On Track!")
 
         if cx <= 50:
-            print "Turn Right"
+            print( "Turn Right")
 
     else:
-        print "I don't see the line"
+        print( "I don't see the line")
 
     #Display the resulting frame
     cv2.imshow('frame',crop_img)
