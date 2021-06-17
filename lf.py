@@ -8,6 +8,7 @@ video_capture.set(4, 120)
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 TILTSERVO = 18
+GPIO.setup(TILTSERVO,GPIO.OUT)
 t=GPIO.PWM(TILTSERVO,50)
 t.start(9)
 t.ChangeDutyCycle(0)
