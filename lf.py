@@ -5,7 +5,8 @@ import RPi.GPIO as GPIO
 video_capture = cv2.VideoCapture(0)
 video_capture.set(3, 160)
 video_capture.set(4, 120)
-
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 TILTSERVO = 18
 t=GPIO.PWM(TILTSERVO,50)
 t.start(9)
@@ -15,8 +16,6 @@ t.ChangeDutyCycle(0)
 LF = 13
 RF = 12
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 #Left Forward
 GPIO.setup(LF, GPIO.OUT)
 
