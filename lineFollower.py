@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import RPi.GPIO as GPIO
 
-video_capture = cv2.VideoCapture(-1)
+video_capture = cv2.VideoCapture(0)
 video_capture.set(3, 160)
 video_capture.set(4, 120)
 
