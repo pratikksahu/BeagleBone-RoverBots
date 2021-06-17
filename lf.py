@@ -10,6 +10,8 @@ video_capture.set(4, 120)
 
 LF = 13
 RF = 12
+
+GPIO.setmode(GPIO.BCM)
 #Left Forward
 GPIO.setup(LF, GPIO.OUT)
 
