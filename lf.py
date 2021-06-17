@@ -19,6 +19,8 @@ GPIO.setup(LF, GPIO.OUT)
 #Right Forward
 GPIO.setup(RF, GPIO.OUT)
 
+GPIO.output(LF, True)
+GPIO.output(RF, True)
 
 while(True):
 
