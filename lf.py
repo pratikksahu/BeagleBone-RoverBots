@@ -10,7 +10,7 @@ GPIO.setwarnings(False)
 TILTSERVO = 18
 GPIO.setup(TILTSERVO,GPIO.OUT)
 t=GPIO.PWM(TILTSERVO,50)
-t.start(9)
+t.start(10)
 t.ChangeDutyCycle(0)
 # Setup Output Pins
 
