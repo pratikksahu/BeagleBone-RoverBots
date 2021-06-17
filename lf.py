@@ -18,8 +18,6 @@ GPIO.setup(LF, GPIO.OUT)
 #Right Forward
 GPIO.setup(RF, GPIO.OUT)
 
-GPIO.output(LF, GPIO.HIGH)
-GPIO.output(RF, GPIO.HIGH)
 
 while(True):
 
@@ -60,20 +58,20 @@ while(True):
 
         if cx >= 120:
             offset_x = (cx-60)
-            GPIO.output(LF, GPIO.HIGH)
-            GPIO.output(RF, GPIO.LOW)
+            GPIO.output(LF, True)
+            GPIO.output(RF, False)
 
         if cx < 120 and cx > 50:
-            GPIO.output(LF, GPIO.LOW)
-            GPIO.output(RF, GPIO.LOW)
+            GPIO.output(LF, False)
+            GPIO.output(RF, False)
         if cx <= 50:
             offset_x = (60-(60-cx))
-            GPIO.output(LF, GPIO.LOW) 
-            GPIO.output(RF, GPIO.HIGH)
+            GPIO.output(LF, False) 
+            GPIO.output(RF, True)
 
     else:
-        GPIO.output(LF, GPIO.HIGH)
-        GPIO.output(RF, GPIO.HIGH)
+        GPIO.output(LF, True)
+        GPIO.output(RF, True)
 
 
     #Display the resulting frame
