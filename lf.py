@@ -59,15 +59,15 @@ while(True):
 
         cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
 
-        if cx >= 150:
+        if cx >= 120:
             offset_x = (cx-60)
             GPIO.output(LF, True)
             GPIO.output(RF, False)
 
-        if cx < 150 and cx > 80:
+        if cx < 120 and cx > 50:
             GPIO.output(LF, False)
             GPIO.output(RF, False)
-        if cx <= 80:
+        if cx <= 50:
             offset_x = (60-(60-cx))
             GPIO.output(LF, False) 
             GPIO.output(RF, True)
