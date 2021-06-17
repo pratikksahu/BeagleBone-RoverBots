@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import Adafruit_BBIO.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 video_capture = cv2.VideoCapture(-1)
 video_capture.set(3, 160)
@@ -8,14 +8,16 @@ video_capture.set(4, 120)
 
 # Setup Output Pins
 
+LF = 13
+RF = 12
 #Left Forward
-GPIO.setup("P8_10", GPIO.OUT)
+GPIO.setup(LF, GPIO.OUT)
 
 #Right Forward
-GPIO.setup("P9_11", GPIO.OUT)
+GPIO.setup(RF, GPIO.OUT)
 
-GPIO.output("P8_10", GPIO.HIGH)
-GPIO.output("P9_11", GPIO.HIGH)
+GPIO.output(LF, GPIO.HIGH)
+GPIO.output(RF, GPIO.HIGH)
 
 while(True):
 
@@ -54,25 +56,22 @@ while(True):
 
         cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
 
-        print cx
-        print cy
-
         if cx >= 120:
             offset_x = (cx-60)
-            GPIO.output("P8_10", GPIO.HIGH)
-            GPIO.output("P9_11", GPIO.LOW)
+            GPIO.output(LF, GPIO.HIGH)
+            GPIO.output(RF, GPIO.LOW)
 
         if cx < 120 and cx > 50:
-            GPIO.output("P8_10", GPIO.LOW)
-            GPIO.output("P9_11", GPIO.LOW)
+            GPIO.output(LF, GPIO.LOW)
+            GPIO.output(RF, GPIO.LOW)
         if cx <= 50:
             offset_x = (60-(60-cx))
-            GPIO.output("P8_10", GPIO.LOW) 
-            GPIO.output("P9_11", GPIO.HIGH)
+            GPIO.output(LF, GPIO.LOW) 
+            GPIO.output(RF, GPIO.HIGH)
 
     else:
-        GPIO.output("P8_10", GPIO.HIGH)
-        GPIO.output("P9_11", GPIO.HIGH)
+        GPIO.output(LF, GPIO.HIGH)
+        GPIO.output(RF, GPIO.HIGH)
 
 
     #Display the resulting frame
