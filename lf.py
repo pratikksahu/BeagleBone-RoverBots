@@ -12,6 +12,7 @@ LF = 13
 RF = 12
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 #Left Forward
 GPIO.setup(LF, GPIO.OUT)
 
