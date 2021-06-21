@@ -3,8 +3,8 @@ import cv2
 import RPi.GPIO as GPIO
 
 video_capture = cv2.VideoCapture(0)
-video_capture.set(3, 160)
-video_capture.set(4, 120)
+video_capture.set(3, 192)
+video_capture.set(4, 108)
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 TILTSERVO = 18
@@ -32,7 +32,7 @@ while(True):
     ret, frame = video_capture.read()
 
     # Crop the image
-    crop_img = frame[60:120, 0:160]
+    crop_img = frame
 
     # Convert to grayscale
     gray = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)
@@ -41,7 +41,7 @@ while(True):
     blur = cv2.GaussianBlur(gray,(5,5),0)
 
     # Color thresholding
-    ret,thresh1 = cv2.threshold(blur,60,255,cv2.THRESH_BINARY_INV)
+    ret,thresh1 = cv2.threshold(blur,100,255,cv2.THRESH_BINARY_INV)
 
     # Erode and dilate to remove accidental line detections
     mask = cv2.erode(thresh1, None, iterations=2)
@@ -63,16 +63,14 @@ while(True):
 
         cv2.drawContours(crop_img, contours, -1, (0,255,0), 1)
 
-        if cx >= 120:
-            offset_x = (cx-60)
+        if cx >= 150:
             GPIO.output(LF, True)
             GPIO.output(RF, False)
 
-        if cx < 120 and cx > 50:
+        if cx < 150 and cx > 40:
             GPIO.output(LF, True)
             GPIO.output(RF, True)
-        if cx <= 50:
-            offset_x = (60-(60-cx))
+        if cx <= 40:
             GPIO.output(LF, False) 
             GPIO.output(RF, True)
 
