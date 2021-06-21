@@ -53,6 +53,7 @@ while(True):
     # Find the biggest contour (if detected)
     if len(contours) > 0:
         c = max(contours, key=cv2.contourArea)
+        
         M = cv2.moments(c)
 
         cx = int(M['m10']/M['m00'])
