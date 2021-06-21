@@ -69,8 +69,8 @@ while(True):
             GPIO.output(RF, False)
 
         if cx < 120 and cx > 50:
-            GPIO.output(LF, False)
-            GPIO.output(RF, False)
+            GPIO.output(LF, True)
+            GPIO.output(RF, True)
         if cx <= 50:
             offset_x = (60-(60-cx))
             GPIO.output(LF, False) 
